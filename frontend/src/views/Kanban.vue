@@ -1,0 +1,118 @@
+<template>
+  <div>
+    <SideBar @toggleSideBar="toggleSideBar" />
+    <NavBarKanban
+      ref="NavBarKanban"
+      :funnel="funnel"
+      @updateStages="updateStages"
+    />
+    <div id="main-content" class="p-4" ref="MainContent">
+      <div class="overflow-x-auto" style="width: 86vw;">
+        <draggable
+          v-model="stages"
+          group="stages"
+          ghost-class="ghost"
+          item-key="id"
+          animation="250"
+          class="d-flex flex-row"
+        >
+          <template #item="{ element }">
+            <div :data-id="element.id">
+              <StageKanban
+                :key="element.id"
+                :stage="element"
+                :funnel="funnel"
+                @change="onChange"
+                @updateStages="updateStages"
+              />
+            </div>
+          </template>
+        </draggable>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import CardContact from "@/components/CardContact.vue";
+import NavBarKanban from "@/components/NavBarKanban.vue";
+import OffCanvasContact from "@/components/OffCanvasContact.vue";
+import SideBar from "@/components/SideBar.vue";
+import StageKanban from "@/components/StageKanban.vue";
+import draggable from "vuedraggable";
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  components: {
+    SideBar,
+    NavBarKanban,
+    OffCanvasContact,
+    CardContact,
+    StageKanban,
+    draggable,
+  },
+  data() {
+    return {
+      funnel: null,
+      stages: [],
+    };
+  },
+  computed: {
+    ...mapGetters("stages", ["getStages"]),
+  },
+  methods: {
+    ...mapActions("stages", ["setStages"]),
+    ...mapActions("contacts", ["swapBetweenPhases"]),
+    updateStages() {
+      console.log("a");
+      this.stages = this.getStages;
+    },
+    onChange(e) {
+      // console.log(e.moved);
+      // console.log(e.added);
+    },
+    toggleSideBar(expanded) {
+      if (expanded) {
+        this.$refs.MainContent.style.marginLeft = "200px";
+        this.$refs.NavBarKanban.$el.style.marginLeft = "200px";
+      } else {
+        this.$refs.MainContent.style.marginLeft = "75px";
+        this.$refs.NavBarKanban.$el.style.marginLeft = "75px";
+      }
+    },
+  },
+  async created() {
+    this.funnel = this.$route.params;
+    await this.setStages(this.funnel.id);
+    this.stages = this.getStages;
+  },
+};
+</script>
+
+<style>
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #d3d3d3;
+}
+
+#main-content {
+  margin-left: 70px;
+  transition: margin-left 0.5s;
+  z-index: -1;
+}
+
+.ghost {
+  opacity: 0.4;
+  background-color: #f0f0f0;
+  border: 1px dashed #ccc;
+}
+</style>

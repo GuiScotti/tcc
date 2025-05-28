@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->integer('position');
+            $table->string('name');
+            $table->unsignedBigInteger('funnel_id');
+            $table->foreign('funnel_id')->references('id')->on('funnel')->onDelete('cascade');
+            $table->unsignedBigInteger('stage_id');
+            $table->foreign('stage_id')->references('id')->on('stages')->onDelete('cascade');
+            $table->string('email')->unique();
+            $table->string('phoneNumber')->nullable()->unique();
+            $table->date('dateOfBirth')->nullable();
+            $table->string('address')->nullable();
+            $table->decimal('buyValue', 10, 2)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('contacts');
+    }
+};
