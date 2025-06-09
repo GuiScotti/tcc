@@ -10,9 +10,7 @@
     >
       <div id="banner" class="d-flex flex-column align-items-start mt-4">
         <div id="icons">
-          <img src="../assets/vencedor/message3c.png" alt="message" />
-          <img src="../assets/vencedor/asterisc3c.png" alt="asterisc" />
-          <img src="../assets/vencedor/plus3c.png" alt="plus" />
+          <img src="../assets/vencedor/otherLogo.png" alt="logo" />
         </div>
         <div id="title" class="d-flex flex-column align-items-start">
           <div id="title-line" class="d-flex">
@@ -35,14 +33,13 @@
           </div>
           <p class="carac">no seu negócio</p>
           <p id="subject" class="d-flex align-items-start mt-3">
-            Uma ferramenta all-in-one para você vender, atender, cobrar e
-            otimizar o seu tempo e o seu dinheiro.
+            Uma ferramenta visando utilidade, modernidade, segurança e facilidade
+            no setor fiscal.
           </p>
         </div>
       </div>
       <form class="w-75 d-flex flex-column align-items-center rounded-4 p-4">
         <h1 style="font-family: grotesque">Comece por aqui!</h1>
-        <!-- componentizar -->
         <InputForm
           type="text"
           v-model="name"
@@ -54,7 +51,7 @@
         <InputForm
           type="email"
           v-model="email"
-          placeholder="Email ou Ramal"
+          placeholder="Email"
           id="email"
           label="Email"
           class="input my-2"
@@ -90,7 +87,7 @@
             v-model="documentType"
             checked
           />
-          <label class="btn btn-outline-primary" for="btnradio1">CPF</label>
+          <label class="btn btn-outline-secondary" for="btnradio1">CPF</label>
           <input
             type="radio"
             class="btn-check"
@@ -100,7 +97,7 @@
             value="CNPJ"
             v-model="documentType"
           />
-          <label class="btn btn-outline-primary" for="btnradio2">CNPJ</label>
+          <label class="btn btn-outline-secondary" for="btnradio2">CNPJ</label>
         </div>
         <InputForm
           type="text"
@@ -114,7 +111,7 @@
         />
         <button
           type="button"
-          class="btn btn-primary w-75 mt-2 cursor-pointer rounded-3"
+          class="btn btn-secondary w-75 mt-2 cursor-pointer rounded-3"
           @click="Register"
         >
           Registrar-se
@@ -162,6 +159,9 @@ export default {
       } else {
         return "##.###.###/####-##";
       }
+    },
+    documentMaxLength() {
+      return this.documentType === "CPF" ? 14 : 18;
     },
   },
   mounted() {
@@ -223,9 +223,9 @@ export default {
 
 <style scoped lang="scss">
 #icons img {
-  width: 30px;
-  height: 30px;
-  margin: 0px 20px 0px 0px;
+  width: 100px;
+  height: auto;
+  margin: 0 20px 0 0;
 }
 
 #title {
@@ -270,7 +270,7 @@ export default {
 }
 
 #animated-word {
-  color: rgb(48, 87, 242);
+  color: #000000;
   font-size: 60px;
   font-weight: bolder;
   display: inline-block;

@@ -9,7 +9,7 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/Login.vue'),
       meta: {
-        title: 'login'
+        title: 'Login'
       }
     },
     {
@@ -64,7 +64,7 @@ router.beforeEach((to, from, next) => {
   const AuthRequired = !PublicRoutes.includes(to.path);
 
   if(AuthRequired && !auth){
-    next({ name: 'login', query: { error: 'Você deve estar logado!'} });
+    next({ name: 'Login', query: { error: 'Você deve estar logado!'} });
   } else {
     next();
   }

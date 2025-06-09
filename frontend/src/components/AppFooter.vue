@@ -1,27 +1,24 @@
 <template>
   <footer id="footer" class="d-flex justify-content-between align-items-center p-2 w-100 position-fixed">
     <div id="links" class="d-flex gap-4 mx-3 align-items-center">
-      <a href="https://www.instagram.com/3cplusnow/" class="icon">
+      <a href="#" class="icon">
         <font-awesome-icon :icon="['fab', 'instagram']" />
       </a>
-      <a
-        href="https://www.tiktok.com/@3cplusnow?_t=8mLHaRJrc3C&_r=1"
-        class="icon"
-      >
+      <a href="#" class="icon">
         <font-awesome-icon :icon="['fab', 'tiktok']" />
       </a>
-      <a href="https://3cplusnow.com/" class="icon">
+      <a href="#" class="icon">
         <font-awesome-icon :icon="['fas', 'file-alt']" />
       </a>
-      <a href="https://app.3c.plus/terms">Termos de uso</a>
-      <a href="https://help.3cplus.com.br/pt-BR/">Ajuda</a>
+      <a href="#">Termos de uso</a>
+      <a href="#">Ajuda</a>
     </div>
     <div id="ip-info">
       <div id="services">
         <div id="circle">
           <font-awesome-icon :icon="['fas', 'circle-check']" id="checkIcon" />
         </div>
-        <a href="https://status.3c.plus/" class="d-flex align-items-center">All services are online</a>
+        <a href="#" class="d-flex align-items-center">All services are online</a>
       </div>
       <span>IP: 143.255.102.12</span>
     </div>
@@ -41,7 +38,6 @@ export default {
   bottom: 0;
   font-family: "CerebriSans";
 }
-
 
 #links a:hover {
   color: rgb(57, 57, 203);

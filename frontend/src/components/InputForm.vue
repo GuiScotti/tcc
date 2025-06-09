@@ -1,14 +1,13 @@
 <template>
-  <div class="form-group form-floating">
+  <div class="form-group">
     <input
       :type="type"
       class="form-control"
       v-model="inputValue"
-      :placeholder="placeholder"2
+      :placeholder="placeholder"
       :maxlength="maxlength"
       :id="id"
     />
-    <label :for="id">{{ label }}</label>
   </div>
 </template>
 
@@ -34,7 +33,7 @@ export default {
     },
     maxlength: {
       type: Number,
-      default: null
+      default: null,
     },
     label: {
       type: String,
@@ -55,47 +54,23 @@ export default {
 </script>
 
 <style scoped>
-#form {
-  width: 100%;
-  margin: 8px 0px 0px;
-}
-
 .form-group {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   width: 100%;
-}
-
-.form-floating > .form-control {
-  min-height: 0 !important;
 }
 
 .form-control {
   border: 1px solid #ced4da;
   border-radius: 8px;
   width: 100%;
-  padding: 4px 12px !important;
-  font-size: 14px;
-  height: 43px;
-}
-
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: none;
+  padding: 10px 12px;
+  font-size: 16px;
   outline: none;
 }
 
-.form-control:focus + label,
-.form-control:not(:placeholder-shown) + label {
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #495057;
-}
-
-label {
-  top: -6px;
-  pointer-events: none;
-  transition: all 0.2s;
-  font-size: 16px;
-  background: white;
+.form-control:focus {
+  border-color: #000000;                      
 }
 </style>
